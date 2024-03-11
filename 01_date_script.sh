@@ -1,5 +1,5 @@
 #!/bin/bash
 
-DATE = $(ls -l)
 
-echo "Todays date is $DATE"
+
+echo "Todays date is nothing"
