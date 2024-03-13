@@ -22,9 +22,11 @@ else
     echo "you are root user"
 fi
 
-yum install nginx -y
+#yum install nginx -y
 
-validate $? installation_of_nginx
+#validate $? installation_of_nginx
+
+echo $# $@ $0
 
 
 
