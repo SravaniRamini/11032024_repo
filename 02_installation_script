@@ -6,9 +6,9 @@ TIMESTAMP=$(date +%F-%H-%M)
 
 LOG_FILE="/tmp/$0-$TIMESTAMP"
 
-R=\e[31m
-G=\e[32m
-N=\e[0m
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
 
 validate(){
 
