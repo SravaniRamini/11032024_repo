@@ -1,6 +1,18 @@
 #!/bin/bash
 
 ID=$(id -u)
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
+
+validate(){
+    if [ $1 -ne 0 ]
+    then 
+        echo -e "$R error in installing $2 $N"
+    else
+        echo -e "$G installing $2 is successful $N"
+}
 
 if [ $ID -ne 0 ]
 then 
@@ -10,4 +22,16 @@ else
     echo " you are a root user"
 fi
 
-echo "all arguments passed $@"
+for packages in $@
+do 
+    yum list installed $packages
+
+    if [ $? -ne 0 ]
+    then 
+        yum install $packages -y
+
+        validate $? $packages
+    else
+        echo -e "$Y $packages is alraedy installed $N"
+
+done
