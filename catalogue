@@ -55,8 +55,6 @@ unzip /tmp/catalogue.zip &>> $LOG_FILE
 
 validate $? "unzipping the file"
 
-cd /app &>> $LOG_FILE
-
 npm install  &>> $LOG_FILE
 
 validate $? "installing dependencies"
