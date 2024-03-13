@@ -24,6 +24,8 @@ fi
 
 #yum install nginx -y
 
+echo "cool"
+
 #validate $? installation_of_nginx
 
 echo $# $@ $0
