@@ -1,0 +1,95 @@
+#!/bin/bash
+
+ID=$(id -u)
+TIME=$(date +%F-%H-%M)
+LOG_FILE="/tmp/$0-$TIME"
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
+
+validate(){
+    if [ $1 -ne 0 ]
+    then 
+        echo -e " $R failed to  $2  $N"
+    else
+        echo -e " $2 ..  $G is success $N"
+    fi
+}
+
+if [ $ID -ne 0 ]
+then 
+    echo -e "$R error : you are not a root user $N"
+    exit 1
+else
+    echo -e "$G you are root user $N"
+fi
+
+dnf module disable nodejs y &>> $LOG_FILE
+
+validate $? "disabling nodejs"
+
+dnf module enable nodejs:18 -y &>> $LOG_FILE
+
+validate $? "enabling nodejs 18 "
+
+dnf install nodejs -y &>> $LOG_FILE
+
+validate $? "installing nodejs"
+
+useradd roboshop &>> $LOG_FILE
+
+validate $? "adding roboshop user"
+
+mkdir /app &>> $LOG_FILE
+
+validate $? "creating app directory"
+
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOG_FILE
+
+validate $? "downloading catalogue file"
+
+cd /app &>> $LOG_FILE
+
+unzip /tmp/catalogue.zip &>> $LOG_FILE
+
+validate $? "unzipping the file"
+
+cd /app &>> $LOG_FILE
+
+npm install  &>> $LOG_FILE
+
+validate $? "installing dependencies"
+
+cp /home/centos/11032024_repo/catalogue.service /etc/systemd/system/catalogue.service 
+
+systemctl daemon-reload &>> $LOG_FILE
+
+validate $? "reloading the daemon service "
+
+systemctl enable catalogue &>> $LOG_FILE
+
+validate $? "enabling catalogue"
+
+systemctl start catalogue &>> $LOG_FILE
+
+validate $? "starting catalogue"
+
+cp /home/centos/11032024_repo/mongo.repo /etc/yum.repos.d/mongo.repo 
+
+validate $? "copying mongo repo"
+
+dnf install mongodb-org-shell -y &>> $LOG_FILE
+
+validate $? "installing mongodb clinet "
+
+mongo --host mongodb.sravin.online </app/schema/catalogue.js
+
+
+
+
+
+
+
+
+
