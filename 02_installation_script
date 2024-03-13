@@ -30,9 +30,7 @@ else
     echo "you are root user"
 fi
 
-#yum install mysql -y &>> $LOG_FILE
-
-echo "Testing colors"
+yum install mysql -y &>> $LOG_FILE
 
 validate $? installation_of_nginx
 
