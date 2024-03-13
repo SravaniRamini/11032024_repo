@@ -83,7 +83,7 @@ dnf install mongodb-org-shell -y &>> $LOG_FILE
 
 validate $? "installing mongodb clinet "
 
-mongo --host mongodb.sravin.online </app/schema/catalogue.js
+mongo --host mongodb.sravin.online </app/schema/catalogue.js &>> $LOG_FILE
 
 
 
