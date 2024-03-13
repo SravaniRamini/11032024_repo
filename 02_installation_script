@@ -26,7 +26,7 @@ fi
 
 echo "cool"
 
-#validate $? installation_of_nginx
+validate $? installation_of_nginx
 
 echo $# $@ $0
 
