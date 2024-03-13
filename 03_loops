@@ -34,5 +34,5 @@ do
         validate $? $packages
     else
         echo -e "$Y $packages is alraedy installed $N"
-
+    fi
 done
