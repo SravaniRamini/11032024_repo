@@ -37,8 +37,6 @@ systemctl start nginx &>> $LOG_FILE
 
 validate $? "starting the nginx"
 
-http://<public-IP>:80 &>> $LOG_FILE
-
 rm -rf /usr/share/nginx/html/*
 
 curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip

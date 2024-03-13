@@ -25,7 +25,7 @@ else
     echo -e "$G you are root user $N"
 fi
 
-dnf module disable nodejs y &>> $LOG_FILE
+dnf module disable nodejs -y &>> $LOG_FILE
 
 validate $? "disabling nodejs"
 
