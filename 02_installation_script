@@ -7,12 +7,20 @@ DATE=$(date)
 if [ $ID -ne 0 ]
 then 
     echo "ERROR : You are a root user"
-    exit
+    exit 1
 else
     echo "you are root user"
 fi
 
-echo "installing mysql on $DATE"
+yum install mysql -y
+
+if [ $? -ne 0]
+then 
+    echo "ERROR"
+    exit 1
+else
+    echo "installation is successful"
+fi
 
 
 
