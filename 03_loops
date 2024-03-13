@@ -12,6 +12,7 @@ validate(){
         echo -e "$R error in installing $2 $N"
     else
         echo -e "$G installing $2 is successful $N"
+    fi
 }
 
 if [ $ID -ne 0 ]
