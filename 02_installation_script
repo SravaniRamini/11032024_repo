@@ -2,6 +2,10 @@
 
 ID=$(id -u)
 
+TIMESTAMP=$(date +%F-%H-%M)
+
+LOG_FILE="/tmp/$0-$TIMESTAMP"
+
 validate(){
 
     if [ $1 -ne 0 ]
@@ -22,13 +26,9 @@ else
     echo "you are root user"
 fi
 
-#yum install nginx -y
-
-echo "cool"
+yum install mysql -y >>&LOG_FILE
 
 validate $? installation_of_nginx
-
-echo $# $@ $0
 
 
 
