@@ -2,6 +2,8 @@
 
 ID=$(id -u)
 
+DATE=$(date)
+
 if [ $ID -ne 0 ]
 then 
     echo "ERROR : You are a root user"
@@ -10,7 +12,7 @@ else
     echo "you are root user"
 fi
 
-echo "installing mysql"
+echo "installing mysql on $DATE"
 
 
 
