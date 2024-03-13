@@ -29,11 +29,11 @@ dnf install nginx -y &>> $LOG_FILE
 
 validate $? "installation of nginx"
 
-systemctl enable nginx -y &>> $LOG_FILE
+systemctl enable nginx &>> $LOG_FILE
 
 validate $? "enabling the  nginx"
 
-systemctl strart nginx -y &>> $LOG_FILE
+systemctl start nginx &>> $LOG_FILE
 
 validate $? "starting the nginx"
 
@@ -49,6 +49,6 @@ unzip /tmp/web.zip
 
 cp /home/centos/11032024_repo/roboshop.conf /etc/nginx/default.d/roboshop.conf 
 
-systemctl restrart nginx -y &>> $LOG_FILE
+systemctl restrart nginx &>> $LOG_FILE
 
 validate $? "restarting the nginx"
